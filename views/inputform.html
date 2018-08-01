@@ -1,0 +1,20 @@
+<!-- New Data Form -->
+<div class="row" id="submit-data-form">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form id="new-database-entry" class="bg-light p-3" method="POST" action="controllers/controller.php">
+            <input type="hidden" name="person-id" value="{{ personId }}">
+            <div class="form-group">
+                <label for="person-age">Name:</label>
+                <input type="text" class="form-control" name="person-name" id="person-name" value="{{ personName }}">
+            </div>
+            <div class="form-group">
+                <label for="person-food">Role:</label>
+                <input type="text" class="form-control" name="person-role" id="person-role" value="{{ personRole }}">
+            </div>
+            <input type="submit" name="{{ submitAction }}" class="btn btn-primary" value="{{ submitButtonName }}">
+        </form>
+    </div>
+    <div class="col-md-6"></div>
+</div>
+
