@@ -20,13 +20,9 @@ $options = [
 
 try {
   $pdo = new PDO($dsn, $config['database']['username'], $config['database']['password'], $options);
-
-
-
-
 } catch (Exception $e) {
   error_log($e->getMessage());
-  exit('Something weird happened'); //something a user can understand
+  exit('Unable to connect to database');
 }
 
 ?>

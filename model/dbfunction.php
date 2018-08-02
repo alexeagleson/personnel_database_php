@@ -28,8 +28,6 @@ function getDataFromDatabase($db) {
     $stmt = $db -> prepare('SELECT * FROM employees');
     $stmt -> execute();
     $arr = $stmt -> fetchAll();
-    //if(!$arr) exit('No rows');
-    //var_export($arr);
     $stmt = null;
     return $arr;
 }

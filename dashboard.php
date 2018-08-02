@@ -9,17 +9,22 @@ $twig = new Twig_Environment($loader);
 
 echo $twig -> render('headdata.html');
 
-$currentUser = (array_key_exists('username', $_SESSION)) ? $_SESSION['username'] : 'Log In';
-echo $twig -> render('navbar.html', array(
-    'active'      => 'dashboard',
-    'currentUser' => $currentUser,
-));
+$currentUser = (array_key_exists('username', $_SESSION)) ? $_SESSION['username'] : '';
 
-$headerTitle = $currentUser . "'s Dashboard";
-echo $twig -> render('header.html', array(
-    'headerTitle' => $headerTitle,
-));
+if ($currentUser == '') {
+    echo $twig -> render('noaccess.html');
+} else {
+    echo $twig -> render('navbar.html', array(
+        'active' => 'dashboard',
+        'currentUser' => $currentUser,
+    ));
 
-echo $twig -> render('footer.html');
+    $headerTitle = $currentUser . "'s Dashboard";
+    echo $twig -> render('header.html', array(
+        'headerTitle' => $headerTitle,
+    ));
+
+    echo $twig -> render('footer.html');
+}
 
 ?>

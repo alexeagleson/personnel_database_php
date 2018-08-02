@@ -31,6 +31,16 @@ $dummyData = [
         'person-name' => 'Janet',
         'person-role' => 'Manager',
     ],
+    [
+        'person-id'   => uniqid(),
+        'person-name' => 'David',
+        'person-role' => 'Marketing',
+    ],
+    [
+        'person-id'   => uniqid(),
+        'person-name' => 'Angela',
+        'person-role' => 'Director',
+    ],
 ];
 
 ?>

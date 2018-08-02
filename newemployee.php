@@ -9,26 +9,31 @@ $twig = new Twig_Environment($loader);
 
 echo $twig -> render('headdata.html');
 
-$currentUser = (array_key_exists('username', $_SESSION)) ? $_SESSION['username'] : 'Log In';
-echo $twig -> render('navbar.html', array(
-    'active'      => 'new-employee',
-    'currentUser' => $currentUser,
-));
+$currentUser = (array_key_exists('username', $_SESSION)) ? $_SESSION['username'] : '';
 
-$headerTitle = 'Add New Employee';
-echo $twig -> render('header.html', array(
-    'headerTitle' => $headerTitle,
-));
+if ($currentUser == '') {
+    echo $twig -> render('noaccess.html');
+} else {
+    echo $twig -> render('navbar.html', array(
+        'active' => 'new-employee',
+        'currentUser' => $currentUser,
+    ));
 
-echo $twig -> render('inputform.html', array(
-    'personID'   => '',
-    'personName' => '',
-    'personRole' => '',
-    'submitButtonName' => 'Add New Employee',
-    'submitAction' => 'new-employee',
-));
+    $headerTitle = 'Add New Employee';
+    echo $twig -> render('header.html', array(
+        'headerTitle' => $headerTitle,
+    ));
 
-echo $twig -> render('footer.html');
+    echo $twig -> render('inputform.html', array(
+        'personID'   => '',
+        'personName' => '',
+        'personRole' => '',
+        'submitButtonName' => 'Add New Employee',
+        'submitAction' => 'new-employee',
+    ));
+
+    echo $twig -> render('footer.html');
+}
 
 ?>
 

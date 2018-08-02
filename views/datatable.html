@@ -1,5 +1,3 @@
- {{ name }}
-
 <!-- Data Table -->
 <div class="row m-2">
     <div class="col-sm-1 col-md-2"></div>
@@ -12,8 +10,10 @@
                             <th>id</th>
                             <th>Name</th>
                             <th>Role</th>
-                            <th></th>
-                            <th></th>
+                            {% if currentUser != '' %}
+                                <th></th>
+                                <th></th>
+                            {% endif %}
                         </tr>
                     </thead>
                     <tbody id="data-table-body">
@@ -22,32 +22,36 @@
                             <td>{{ tableRow.id }}</td>
                             <td name="person-name">{{ tableRow.name }}</td>
                             <td name="person-role">{{ tableRow.role }}</td>
-                            <form method="POST" action="../editemployee.php">
-                                <input type="hidden" name="person-id" value="{{ tableRow.id }}">
-                                <input type="hidden" name="person-name" value="{{ tableRow.name }}">
-                                <input type="hidden" name="person-role" value="{{ tableRow.role }}">
-                                <td>
-                                    <input type="submit" name="edit-employee" class="btn btn-primary btn-sm" value="Edit">
-                                </td>
-                            </form>
-                            <form method="POST" action="../controllers/controller.php">
-                                <input type="hidden" name="person-id" value="{{ tableRow.id }}">
-                                <td>
-                                    <input type="submit" name="remove-employee" class="btn btn-secondary btn-sm" value="Remove">
-                                </td>
-                            </form>
+                            {% if currentUser != '' %}
+                                <form method="POST" action="./editemployee.php">
+                                    <input type="hidden" name="person-id" value="{{ tableRow.id }}">
+                                    <input type="hidden" name="person-name" value="{{ tableRow.name }}">
+                                    <input type="hidden" name="person-role" value="{{ tableRow.role }}">
+                                    <td>
+                                        <input type="submit" name="edit-employee" class="btn btn-primary btn-sm" value="Edit">
+                                    </td>
+                                </form>
+                                <form method="POST" action="./controllers/controller.php">
+                                    <input type="hidden" name="person-id" value="{{ tableRow.id }}">
+                                    <td>
+                                        <input type="submit" name="remove-employee" class="btn btn-secondary btn-sm" value="Remove">
+                                    </td>
+                                </form>
+                            {% endif %}
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
-            <div class="pb-5">
-                <form method="POST" action="controllers/controller.php">
-                    <a class="btn btn-primary btn-sm m-2" href="../newemployee.php">Add New Employee</a>
-                    <input type="submit" name="clear-all-data" class="btn btn-danger btn-sm m-2" value="Clear All Data">
-                    <input type="submit" name="insert-multiple-employees" class="btn btn-danger btn-sm m-2" value="Initialize Dummy Data">
-                </form>
-            </div>
+            {% if currentUser != '' %}
+                <div class="pb-5">
+                    <form method="POST" action="./controllers/controller.php">
+                        <a class="btn btn-primary btn-sm m-2" href="./newemployee.php">Add New Employee</a>
+                        <input type="submit" name="clear-all-data" class="btn btn-danger btn-sm m-2" value="Clear All Data">
+                        <input type="submit" name="insert-multiple-employees" class="btn btn-danger btn-sm m-2" value="Initialize Dummy Data">
+                    </form>
+                </div>
+            {% endif %}
         </center>
     </div>
     <div class="col-sm-1 col-md-2"></div>

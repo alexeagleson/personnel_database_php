@@ -9,9 +9,9 @@ $twig = new Twig_Environment($loader);
 
 echo $twig -> render('headdata.html');
 
-$currentUser = (array_key_exists('username', $_SESSION)) ? $_SESSION['username'] : 'Log In';
+$currentUser = (array_key_exists('username', $_SESSION)) ? $_SESSION['username'] : '';
 echo $twig -> render('navbar.html', array(
-    'active'      => 'login',
+    'active' => 'login',
     'currentUser' => $currentUser,
 ));
 
